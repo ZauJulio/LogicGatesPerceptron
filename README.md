@@ -5,7 +5,7 @@ Extension of the AI repository with the implementation of the simple representat
 ## How to start
 
 ```console
-  foo@bar ~$ python logic_gates.py
+  foo@bar ~/LogicGatesPerceptron/src$ python logic_gates.py
 ```
 
 ## Made by
