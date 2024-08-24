@@ -19,8 +19,11 @@ model = MLPClassifier(
     hidden_layer_sizes=(4),
     alpha=10,
 )
+
 model.fit(X_train, y_train)
+
 score = model.score(X_test, y_test)
+
 y_pred = model.predict(X_test)
 
 # Plot classification
@@ -31,9 +34,6 @@ xx, yy = np.meshgrid(np.arange(x_min, x_max, .02),
                      np.arange(y_min, y_max, .02))
 
 
-cm = plt.cm.RdBu
-cm_bright = ListedColormap(['#FF0000', '#0000FF'])
-
 ax = plt.subplot(1, 1, 1)
 
 ax.contourf(
@@ -42,7 +42,7 @@ ax.contourf(
     model.predict_proba(
         np.c_[xx.ravel(), yy.ravel()]
     )[:, 1].reshape(xx.shape),
-    cmap=cm,
+    cmap=plt.cm.RdBu,
     alpha=.8
 )
 
@@ -52,7 +52,7 @@ ax.scatter(
     X_train[:, 1] + .01,
     c=y_train,
     label="Train data*",
-    cmap=cm_bright,
+    cmap=ListedColormap(['#FF0000', '#0000FF']),
     edgecolors='black',
     s=25
 )
@@ -63,7 +63,7 @@ ax.scatter(
     X_test[:, 1] - .01,
     c=y_test,
     label="Test data*",
-    cmap=cm_bright,
+    cmap=ListedColormap(['#FF0000', '#0000FF']),
     edgecolors='yellow',
     s=25
 )
@@ -74,7 +74,7 @@ ax.scatter(
     X_test[:, 1] + .01,
     c=y_pred,
     label="Validation data*",
-    cmap=cm_bright,
+    cmap=ListedColormap(['#FF0000', '#0000FF']),
     edgecolors='white',
     s=25
 )

@@ -5,13 +5,12 @@ from sklearn.metrics import accuracy_score
 X = [[0, 0], [0, 1], [1, 0], [1, 1]] * 1000
 y = [0, 1, 1, 0] * 1000
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.3, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
 
 model = MLPClassifier(
-    activation='tanh',
-    solver='lbfgs',
+    activation="tanh",
+    solver="lbfgs",
     hidden_layer_sizes=(4),
     alpha=10,
 )
@@ -25,5 +24,12 @@ print(f"Estimated  set: {y_pred[:20]}...")
 
 
 # Average accuracy
-print('Accuracy: %.8f %%' % (accuracy_score(y_test, y_pred)*100))
-print("\Synaptic weights: \n", model.coefs_)
+print("Accuracy: %.8f %%" % (accuracy_score(y_test, y_pred) * 100))
+
+for i, j in zip(X_test[:10], y_pred[:10]):
+    print(f"{i} => {j}")
+
+print("\Synaptic weights: \n")
+for coef in model.coefs_:
+    for c in coef:
+        print(c)
